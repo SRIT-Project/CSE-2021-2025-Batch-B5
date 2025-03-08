@@ -1,0 +1,276 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Furniture-Rentals{% endblock title %}
+{% block content %}
+<style>
+    .colect-text > a {
+        position: relative; /* Required for ::after to position correctly */
+        text-decoration: none; /* Removes default underline */
+    }
+
+    .colect-text > a::after {
+        background: #f4cca4 none repeat scroll 0 0;
+        bottom: 0px;
+        content: "";
+        height: 1px;
+        position: absolute;
+        right: 0;
+        width: 98px; /* Controls the underline length */
+        z-index: 2;
+    }
+</style>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- header section end -->
+        <!-- slider-section-start -->
+        <div style="margin-top:50px;margin-bottom:50px"   class=" container main-slider-one main-slider-two slider-area">
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+				<div class=" carousel-inner">
+					<div class="carousel-item active">
+					<img style="width: 100%;height: auto;" class="d-block w-100"  src="{% static 'img/frontpage.jpeg' %}" alt="First slide">
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<!-- slider section end -->
+        <!-- collection section start -->
+		<section style="background:#1c1427;"  class="collection-area collection-area2 section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="single-colect banner collect-one">
+							<a href="#"><img src="{% static 'img/new/diningtable.jpg' %}" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="colect-text ">
+							<h4><a href="#">Modern Furniture Collection 2025</a></h4> 
+<h5>Discover Comfort & Style with Our Latest Beds, Sofas & Dining Sets<br /> Available at Affordable Rental Prices!</h5> 
+<div class= colect-text><a href="#" style="">Rent Now <i class="mdi mdi-arrow-right"></i></a></div>
+						</div>
+						<div class="collect-img banner margin single-colect">
+							<a href="#"><img src="{% static 'img/new/sofaset.jpg' %}" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="collect-img banner single-colect">
+							<a href="#"><img src="{% static 'img/new/bed.jpg' %}" alt=""  /></a>
+						</div>
+						<div class="colect-text ">
+							<h4><a href="#">Home Essentials Rentals</a></h4>
+<p>Upgrade Your Space with Premium Furniture - Hassle-Free & Budget-Friendly Rentals!</p>
+<div class= colect-text><a href="#" style="">Rent Now <i class="mdi mdi-arrow-right"></i></a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<br><br>
+		<!-- collection section end -->
+        <!-- featured-products section start -->
+		<section class="single-products  products-two section-padding extra-padding-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="section-title text-center">
+							<h2>Featured Items</h2>
+						</div>
+					</div>
+				</div>
+				<div class="wrapper">
+					<ul class="load-list load-list-one">
+						<li>
+							<div class="row text-center">
+								<div class="col-xs-12 col-sm-6 col-md-3">
+									<div class="single-product">
+										<div class="product-img">
+											<div class="pro-type">
+												<span>Home</span>
+											</div>
+											<a href="#"><img style="max-width:100%;height:300px" src="{% static 'img/new/diningtable.jpg' %}" alt="Product Title" /></a>
+											
+										</div>
+										<div class="product-dsc">
+											<p><a href="#">Wooden Dining Table</a></p>
+											<span>$65.20/day</span>
+										</div>
+									</div>
+								</div>
+								<!-- single product end -->
+								<div class="col-xs-12 col-sm-6 col-md-3">
+									<div class="single-product">
+										<div class="product-img">
+											<div class="pro-type sell">
+												<span>Birthday</span>
+											</div>
+											<a href="#"><img style="max-width:100%;height:300px" src="{% static 'img/new/birthday1.jpg' %}" alt="Product Title" /></a>
+											
+										</div>
+										<div class="product-dsc">
+											<p><a href="#">Pink Theme Chairs</a></p>
+											<span>$57.00/day</span>
+										</div>
+									</div>
+								</div>
+								<!-- single product end -->
+								<div class="col-xs-12 col-sm-6 col-md-3 r-margin-top">
+									<div class="single-product">
+										<div class="product-img">
+											<div class="pro-type sell">
+												<span>Wedding</span>
+											</div>
+											<a href="#"><img style="max-width:100%;height:300px" src="{% static 'img/new/Wedding-WhiteLounge.jpg' %}" alt="Product Title" /></a>
+											
+										</div>
+										<div class="product-dsc">
+											<p><a href="#">White Wedding Lounge</a></p>
+											<span>$86.00/day</span>
+										</div>
+									</div>
+								</div>
+								<!-- single product end -->
+								<div class="col-xs-12 col-sm-6 col-md-3 r-margin-top">
+									<div class="single-product">
+										<div class="product-img">
+											<div class="pro-type">
+												<span>Home</span>
+											</div>
+											<a href="#"><img style="max-width:100%;height:300px" src="{% static 'img/new/WhiteSofasLounge.jpg' %}" alt="Product Title" /></a>
+											
+										</div>
+										<div class="product-dsc">
+											<p><a href="#">White Sofa Set</a></p>
+											<span>$76.20/day</span>
+										</div>
+									</div>
+								</div>
+								<!-- single product end -->
+							</div>
+						</li>
+					</ul><br>
+					<button id="load-more-one">Load More</button>
+				</div>
+			</div>
+		</section><br><br>
+		<!-- featured-products section end -->
+		<!-- coming product section start -->
+		
+		
+        <!-- coming product section end -->
+        <!-- tab-products section start -->
+		<div class="tab-products single-products products-two section-padding extra-padding-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="section-title text-center">
+							<div class="col-xs-12">
+								<div class="section-title text-center">
+									<h2>Products</h2>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="text-center tab-content">
+					<div class="tab-pane  fade in active" id="all">
+						<div class="wrapper">
+							<ul class="load-list load-list-two">
+								<li>
+									<div class="row text-center">
+										{% for product in products|slice:':8' %}
+										<div  class="col-xs-12 col-sm-6 col-md-3">
+											<div style="margin-top:10px" style="width:100%; height:500px" class="single-product">
+												<div class="product-img">
+													<a href="#"><img style="width:100%; height:350px"src="{{ product.image.url}}" alt="Product Title" /></a>
+													<div class="actions-btn">
+														<a href="#"><i class="mdi mdi-cart"></i></a>
+														<a href="#" data-toggle="modal" data-target="#quick-view"><i class="mdi mdi-eye"></i></a>
+														<a href="#"><i class="mdi mdi-heart"></i></a>
+													</div>
+												</div>
+												<div class="product-dsc">
+													<p><a href="#">{{product.name}}</a></p>
+													<span>${{product.price}}</span>
+												</div>
+											</div>
+										</div>
+										{% endfor %}
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><br><br>
+		<!-- tab-products section end -->
+        <!-- blog section start -->
+		<section style="background:#1c1427" class="latest-blog section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="section-title text-center">
+							<h2>Latest Blog</h2>
+						</div>
+					</div>
+				</div>
+				<div class="wrapper">
+					<ul class="load-list load-list-blog">
+						<li>
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="l-blog-text">
+										<div class="banner"><a ><img style="max-width:100%;height:500px" src="{% static 'img/new/diningtable.jpg' %}" alt="" /></a></div>
+										<div class="s-blog-text">
+											<h4><a >Dining Tables</a></h4>
+											<span>By : <a href="#">RentalsTeam</a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
+											<p>Enhance your dining experience with beautifully crafted tables that combine style and function.</p>
+										</div>
+										<div class="date-read clearfix">
+											<a href="#"><i class="mdi mdi-clock"></i>Jan 28, 2025</a>
+											<a >read more</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="l-blog-text">
+										<div class="banner"><a ><img style="max-width:100%;height:500px" src="{% static 'img/new/WhiteSofasLounge.jpg' %}" alt="" /></a></div>
+										<div class="s-blog-text">
+											<h4><a >White Sofas</a></h4>
+											<span>By : <a href="#">RentalsTeam </a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
+											<p>Elevate your living room with luxurious white sofas that blend seamlessly with any decor.</p>
+										</div>
+										<div class="date-read clearfix">
+											<a href="#"><i class="mdi mdi-clock"></i>Jan 28, 2025</a>
+											<a >read more</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="l-blog-text">
+										<div class="banner"><a ><img style="max-width:100%;height:500px" src="{% static 'img/new/birthday1.jpg' %}" alt="" /></a></div>
+										<div class="s-blog-text">
+											<h4><a >Pink Themed Birthday</a></h4>
+											<span>By : <a href="#">RentalsTeam</a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
+											<p>Celebrate in style with a pink-themed birthday setup, perfect for creating a dreamy atmosphere.</p>
+										</div>
+										<div class="date-read clearfix">
+											<a href="#"><i class="mdi mdi-clock"></i>Jan 28, 2025</a>
+											<a >read more</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<br><br>
+					
+				</div>
+			</div>
+		</section>
+		<!-- blog section end -->
+       
+{% endblock content %}

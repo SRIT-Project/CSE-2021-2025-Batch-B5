@@ -1,0 +1,194 @@
+{% extends '../../../base.html' %}
+{% load static %}
+{% block title %}Payment{% endblock title %}
+{% block content %}
+<!-- pages-title-start -->
+<div class="pages-title section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="pages-title-text text-center">
+          <h2 style="color:#f4cca4">Payment</h2>
+          <ul class="text-left">
+            <li><a style="color:#d99879" href="\">Home </a></li>
+            <li style="color:#d99879"><span> // </span>Checkout</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- pages-title-end -->
+<!-- Checkout content section start -->
+<section style="margin-bottom:50;background:#1c1427" class="pages checkout section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div style="border-radius:20px;" class="padding60">
+          <div class="log-title text-center">
+            <h2><strong style="color:#d99879">Billing Address</strong></h2><br>
+          </div>
+          <div class="cart-form-text pay-details table-responsive text-center">
+            <table class="tablee" style="width:100%">
+              <thead></thead>
+              <tbody>
+                <tr>
+                  <th style="font-size:15px">Name</th>
+                  <td style="font-size:15px">{{order.full_name}}</td>
+                </tr>
+                <tr>
+                  <th style="font-size:15px">Email</th>
+                  <td style="font-size:15px">{{order.email}}</td>
+                </tr>
+                <tr>
+                  <th style="font-size:15px">Phone Number</th>
+                  <td style="font-size:15px">{{order.phone}}</td>
+                </tr>
+                <tr>
+                  <th style="font-size:15px">Address</th>
+                  <td style="font-size:15px">{{order.address}}</td>
+                </tr>
+                <tr>
+                  <th style="font-size:15px">City</th>
+                  <td style="font-size:15px">{{order.city}}</td>
+                </tr>
+                <tr>
+                  <th style="font-size:15px">Country</th>
+                  <td style="font-size:15px">{{order.country}}</td>
+                </tr>
+                {% if order.order_note %}
+                <tr>
+                  <th style="font-size:15px">Order Note</th>
+                  <td style="font-size:15px">{{order.order_note}}</td>
+                </tr>
+                {% endif %}
+              </tbody>
+              <br>
+            </table><br><br>
+            <div class="log-title text-center">
+              <h2><strong style="color:#d99879">Payment Method</strong></h2><br>
+            </div>
+            <h3 style="font-size:15px; margin-left:30px" class="floatleft">RazorPay</h3><br><br>
+          </div>
+        </div><br>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <div style="border-radius:20px" class="padding60">
+          <div class="log-title text-center">
+            <h2><strong style="color:#d99879">Order</strong></h2>
+          </div><br><br>
+          <div class="cart-form-text pay-details table-responsive text-center">
+            <table style="width:100%;">
+              <thead style="border-radius:20px;">
+                <tr>
+                  <th style="color:#f4cca4;background:#1c1427;border-radius:20px 0 0 20px;">Product</th>
+                  <td style="color:#f4cca4;background:#1c1427;border-radius:0 20px 20px 0;">Total</td>
+                </tr>
+              </thead>
+              <tbody>
+                {% for cart_item in cart_items %}
+                <tr>
+                  <th>{{cart_item.product.name}} x {{cart_item.quantity}}</th>
+                  <td>${{cart_item.sub_total}}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                  <th>Shipping and Handling</th>
+                  <td>${{handing}}</td>
+                </tr>
+                <tr>
+                  <th>Tax</th>
+                  <td>${{vat}}</td>
+                </tr>
+                <tr style="color:#d99879">
+                  <th>Order total</th>
+                  <td>${{order_total}}</td>
+                </tr>
+              </tbody>
+              <tfoot></tfoot>
+            </table>
+            <div style="width:100%" class="submit-text">
+              <button id="razorpay-button" class="btn btn-warning" style="background:#f4cca4;color:#1c1427; width:100%; text-transform: capitalize;font-size:15px">
+                  <b>Pay Now</b>
+              </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+document.getElementById('razorpay-button').addEventListener('click', function() {
+    var csrfToken = '{{ csrf_token }}';
+    var orderID = '{{ order.order_number }}';
+    
+    // Fetch order details and create Razorpay order
+    fetch("{% url 'orders:create_razorpay_order' %}", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+        },
+        body: JSON.stringify({ orderID: orderID })
+    })
+    .then(response => response.json())
+    .then(data => {
+        var options = {
+            "key": "{{ RAZORPAY_KEY_ID }}",  // Razorpay Key
+            "amount": data.amount,  // Amount in paise
+            "currency": "INR",
+            "name": "Rental Platform",
+            "description": "Rental Payment",
+            "order_id": data.razorpay_order_id,
+            "handler": function (response) {
+                // Simulate successful payment by sending mock payment details
+                var mockResponse = {
+                    razorpay_payment_id: "mock_payment_"  // Simulate payment ID
+                };
+
+                // Mock the payment success
+                fetch("{% url 'orders:payments' %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken
+                    },
+                    body: JSON.stringify({
+                        orderID: orderID,
+                        transID: mockResponse.razorpay_payment_id,
+                        payment_method: 'Razorpay',
+                        status: 'Completed'
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Redirect to the order complete page
+                    var redirect_url = "{% url 'orders:order_complete' %}";
+                    window.location.href = redirect_url + '?order_number=' + data.order_number + '&payment_id=' + data.transID;
+                })
+                .catch(error => console.error('Error:', error));
+            },
+            "theme": {
+                "color": "#f4cca4"
+            }
+        };
+
+        var rzp = new Razorpay(options);
+        rzp.open();
+
+        // Simulate the success after opening Razorpay (skipping actual payment)
+        setTimeout(function() {
+            // Simulate the handler call with mock payment ID
+            var response = { razorpay_payment_id: "mock_payment_" };
+            options.handler(response);
+        }, 2000); // Simulate success after 2 seconds (or adjust as needed)
+    })
+    .catch(error => console.error('Error:', error));
+});
+</script>
+
+        {% endblock content %}
+          

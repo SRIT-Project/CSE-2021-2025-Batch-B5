@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="limiter">
+    <div class="container-login100" style="background:#40394a; display: flex; justify-content: center; align-items: center; min-height: 80vh;">
+        <div class="wrap-login100" style="width: 40%; background:#1c1427; padding: 40px; border-radius: 15px; text-align: left;">
+            
+            <span class="login100-form-title p-b-26" style="color:#d99879; font-size: 26px; text-align: center;">
+                <strong><center>*Terms and Conditions*</center></strong>
+            </span>
+            <div style="color:#f4cca4; font-size: 18px; text-align: justify; width: 100%;line-height: normal;">
+            <p style="color:#f4cca4; font-size: 16px;text-align: justify;">Welcome to our rental platform. By using our services, you agree to the following terms:</p>
+            <h3 style="color:#d99879; font-size: 18px; display: inline;">Payment & Escrow:</h3>
+            <p style="color:#f4cca4; font-size: 16px; display: inline;text-align: justify;"> 20% of the total rental price is paid immediately to the owner. The remaining 80% is held in escrow and released after the rental period.</p>
+
+            <br>
+
+            <h3 style="color:#d99879; font-size: 18px; display: inline;">Refund & Cancellation:</h3>
+            <p style="color:#f4cca4; font-size: 16px; display: inline;text-align: justify;"> If the item is unavailable, the full amount will be refunded. If the renter cancels, only 80% is refundable, depending on the cancellation timing.</p>
+
+            <br>
+
+            <h3 style="color:#d99879; font-size: 18px; display: inline;">Damage & Liability:</h3>
+            <p style="color:#f4cca4; font-size: 16px; display: inline;text-align: justify;"> The renter is responsible for any damage during the rental period. The owner must ensure the item is in good condition before renting it out.</p>
+
+            <br>
+
+            <h3 style="color:#d99879; font-size: 18px; display: inline;">User Responsibilities:</h3>
+            <p style="color:#f4cca4; font-size: 16px; display: inline;text-align: justify;"> You must provide accurate information for payments and rentals. Any fraudulent activities will result in account suspension.</p>
+</div>
+            <br>
+
+            <form action="{% url 'orders:checkout' %}" method="GET" style="margin-top: 20px; text-align: center;">
+                <input type="checkbox" id="agree" required>
+                <label for="agree" style="color:#f4cca4; font-size: 16px;">I have read and agree to the Terms and Conditions.</label>
+                <br><br>
+                <button type="submit" class="login100-form-btn" style="background: #d99879; color: #1c1427; font-size: 16px; padding: 10px 20px; border-radius: 5px;">
+                    OK
+                </button>
+            </form>
+            
+            <br>
+            <div style="text-align: center;">
+                <a href="{% url 'shop:home' %}" class="btn btn-warning" style="background:#f4cca4; color:#1c1427; font-size: 18px; padding: 10px 20px; border-radius: 5px;">
+                    <i class="fas fa-angle-double-left"></i>&nbsp;&nbsp; Back to Home
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

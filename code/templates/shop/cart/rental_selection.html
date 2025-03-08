@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="limiter">
+    <div class="container-login100" style="background:#40394a; display: flex; justify-content: center; align-items: center; min-height: 70vh;">
+        <div class="wrap-login100" style="width: 30%; background:#1c1427; padding: 40px; border-radius: 15px; text-align: center;">
+            <form class="login100-form validate-form" action="{% url 'cart:add_cart' product.id %}" method="POST">
+                {% csrf_token %}
+                
+                
+                <span class="login100-form-title p-b-26" style="color:#f4cca4; font-size: 22px;">
+                    <strong>Select Rental Type for <span style="color:#d99879 ">{{ product.name }}</span></strong>
+                </span>
+                <br><br>
+                <div class="wrap-input100 validate-input" style="margin-bottom: 15px;">
+                    <label for="rental_type" style="color:#f4cca4; font-size: 18px;">Choose Rental Type:</label>
+                    <select class="input100" name="rental_type" id="rental_type" style="width: 100%;background-color: #40394a; padding: 10px; font-size: 16px; border-radius: 5px;">
+                        <option value="hourly">Hourly</option>
+                        <option value="daily">Daily</option>
+                    </select>
+                </div>
+                
+                <div class="wrap-input100 validate-input" style="margin-bottom: 20px;">
+                    <label for="duration" style="color:#f4cca4; font-size: 18px;">Enter Duration (Hours/Days):</label>
+                    <input class="input100" type="number" name="duration" id="duration" min="1" required style="width: 100%;background-color: #40394a; padding: 10px; font-size: 16px; border-radius: 5px;">
+                </div>
+                
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                
+                <div class="container-login100-form-btn" style="margin-top: 20px;">
+                    <button class="login100-form-btn" style="background: #d99879; color: #1c1427; font-size: 18px; padding: 10px 20px; border-radius: 5px;">
+                        Add to Cart
+                    </button>
+                </div>
+                
+                <br><br>
+                <a href="{% url 'shop:home' %}" class="btn btn-warning" style="background:#f4cca4; color:#1c1427; font-size: 18px; padding: 10px 20px; border-radius: 5px;">
+                    <i class="fas fa-angle-double-left"></i>&nbsp;&nbsp; Back to Home
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
